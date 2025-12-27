@@ -1,0 +1,6 @@
+Program.cs
+    - added Cors to allow for the connection to the NHL API
+    - "Allow React"
+    - local host 3000
+NHLPlayerController.cs
+    - pass in the playerId and it will return specific data about that player back to React

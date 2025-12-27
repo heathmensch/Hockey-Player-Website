@@ -1,0 +1,10 @@
+package.json
+    - added proxy for the NHL API
+.env
+    - Holds the API key used for the stocks page.
+    - Probably not needed anymore
+api.tsx
+    - uses the backend to look into the NHL API and retrieve
+index.tsx
+    - where you call the function with the playersId to retreive the info
+    - this is just the test case, will be changed
