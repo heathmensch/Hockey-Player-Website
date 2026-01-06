@@ -1,8 +1,14 @@
 export interface PlayerSearch {
   playerId: number;
-  name: string;
-  positionCode: string;
-  teamAbbrev?: string;
+  headshotUrl: string;
+  heroImage: string;
+  firstName: string;
+  lastName: string;
+  currentTeamAbbrev: string;
+  position: string;
+  goals: number;
+  assists: number;
+  points: number;
 }
 
 export interface PlayerLanding {

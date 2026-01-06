@@ -1,23 +1,48 @@
 import React, { JSX } from 'react'
 import "./Card.css";
+import { PlayerSearch } from '../../player';
 
 interface Props {
-    Image: string;
-    playerName: string;
-    playerNumber: number;
-    teamName: string;
-    position: string;
+    id: string;
+    searchResult: PlayerSearch;
+
 }
-const Card: React.FC<Props> = ({Image, playerName, playerNumber, teamName, position}: Props) : JSX.Element => {
+const Card: React.FC<Props> = ({ id, searchResult }: Props) : JSX.Element => {
+  console.log("PLAYER NAME:", searchResult.firstName);
   return (
-  <div className="card"><img src={Image} alt={playerName} />
-  <div className="details">
-    <h2>{playerName}</h2>
-    <p>#{playerNumber}</p>
-    <p>{teamName}</p>
+  <div className="card">
+    <img 
+      src={searchResult.heroImage}
+      alt={`${searchResult.firstName} ${searchResult.lastName}`} 
+    />
+
+    <div className="details">
+      <h2>{searchResult.firstName} {searchResult.lastName}</h2>
+      <p>{searchResult.currentTeamAbbrev} • {searchResult.position}</p>
     </div>
-    <p className="info">{position}</p>
+
+    {/* Stats Grid */}
+    <div className="stats">
+      <div className="stat">
+        <div className="stat-value">{searchResult.goals}</div>
+        <div className="stat-label">Goals</div>
+      </div>
+
+      <div className="stat">
+        <div className="stat-value">{searchResult.assists}</div>
+        <div className="stat-label">Assists</div>
+      </div>
+
+      <div className="stat">
+        <div className="stat-value">{searchResult.points}</div>
+        <div className="stat-label">Points</div>
+      </div>
     </div>
+
+    {/* Player ID Badge */}
+    <p className="info">ID: {searchResult.playerId}</p>
+  </div>
+
   );
 };
 
