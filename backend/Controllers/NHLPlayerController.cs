@@ -69,6 +69,44 @@ namespace YourApp.Controllers
             _httpClient = httpClient;
         }
 
+        // Get player ID based on first and last name
+        [HttpGet("search")]
+        public async Task<IActionResult> GetPlayerId(string firstName, string lastName)
+        {
+            try
+            {
+                var response = await _httpClient.GetAsync(
+                    $"https://api.nhle.com/stats/rest/en/players?cayenneExp=firstName=%22{firstName}%22%20and%20lastName=%22{lastName}%22"
+                );
+                if (!response.IsSuccessStatusCode)
+                {
+                    return StatusCode((int)response.StatusCode, "Failed to fetch player data");
+                }
+
+                var jsonString = await response.Content.ReadAsStringAsync();
+                var nhlData = JsonSerializer.Deserialize<JsonElement>(jsonString);
+
+                var dataArray = nhlData.GetProperty("data");
+
+                // Check if any player was found, if data was found or not
+                if (dataArray.GetArrayLength() == 0)
+                {
+                    return NotFound("Player not found");
+                }
+
+                // Get the first player's ID from the results
+                var resultId = dataArray[0].GetProperty("id").GetInt32();
+
+                return Ok(resultId);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error: {ex.Message}");
+            }
+        }
+
+
+        // Use player ID to get detailed player landing info
         [HttpGet("player/{playerId}/landing")]
         public async Task<IActionResult> GetPlayerLanding(int playerId)
         {
