@@ -10,9 +10,9 @@ const root = ReactDOM.createRoot(
 );
 
 // Example usage of the updated searchPlayers function
-searchPlayers("8476453").then(results => {
-  console.log(results);
-});
+// searchPlayers("8476453").then(results => {
+//   console.log(results);
+// });
 
 root.render(
   <React.StrictMode>

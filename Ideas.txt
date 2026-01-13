@@ -1,0 +1,2 @@
+- Add a dropdown for player names to avoid misspelling
+- update the UI

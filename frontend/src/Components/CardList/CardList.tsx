@@ -1,9 +1,5 @@
 import React, { JSX } from 'react'
 import Card from '../Card/Card'
-import McDavid from '../../Images/McDavid.png'
-import Bedard from '../../Images/Bedard.jpg'
-import Matthews from '../../Images/Matthews.jpg'
-import Draisaitl from '../../Images/Draisaitl.jpg'
 import { PlayerSearch } from '../../player'
 import { v4 as uuidv4 } from 'uuid';
 
