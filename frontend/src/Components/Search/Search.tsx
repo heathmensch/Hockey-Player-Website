@@ -1,41 +1,32 @@
 import React, { ChangeEvent, JSX, useState, SyntheticEvent } from 'react'
 
+// Props type definitions
 interface Props {
-    onClick: (e: SyntheticEvent) => void;
+    onSearchSubmit: (e: SyntheticEvent) => void;
     firstName: string | undefined;
     lastName: string | undefined;
-    search: string | undefined;
-    handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
     handleFirstNameChange: (e: ChangeEvent<HTMLInputElement>) => void;
     handleLastNameChange: (e: ChangeEvent<HTMLInputElement>) => void;
 };
 
-const Search: React.FC<Props> = ({onClick, 
+const Search: React.FC<Props> = ({  onSearchSubmit, 
                                     firstName, 
                                     lastName, 
-                                    search, 
-                                    handleChange,
                                     handleFirstNameChange, 
                                     handleLastNameChange
     }: Props) : JSX.Element => {    
+        // send first and last name data on submit
     return (
-        <div>
-            <input 
-                value={firstName} 
-                onChange={(e) => handleFirstNameChange(e)}
-                placeholder="First Name"
-            />
-            <input 
-                value={lastName} 
-                onChange={(e) => handleLastNameChange(e)}
-                placeholder="Last Name"
-            />
-            <button onClick={(e) => onClick(e)}>Search</button>
-        </div>
-        // <div>
-        //     <input value={search} onChange={(e) => handleChange(e)}></input>
-        //     <button onClick={(e) => onClick(e)}>The Hello Button</button>
-        // </div>
+        <>
+        <form onSubmit={onSearchSubmit}> 
+                <input  value={firstName} 
+                        onChange={handleFirstNameChange} 
+                        placeholder='First Name'/>
+                <input value={lastName}
+                        onChange={handleLastNameChange} 
+                        placeholder='Last Name'/>
+                <button type='submit'>Search</button>
+        </form></>
   )
 }
 

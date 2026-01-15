@@ -1,14 +1,15 @@
 import React, { JSX } from 'react'
 import "./Card.css";
 import { PlayerSearch } from '../../player';
+import AddPlayer from '../Player/AddPlayer';
 
 interface Props {
     id: string;
     searchResult: PlayerSearch;
-
+    onPlayerCreate: (e: React.SyntheticEvent) => void;
 }
-const Card: React.FC<Props> = ({ id, searchResult }: Props) : JSX.Element => {
-  console.log("PLAYER NAME:", searchResult.firstName);
+const Card: React.FC<Props> = ({ id, searchResult, onPlayerCreate }: Props) : JSX.Element => {
+  console.log("PLAYER NAME:", searchResult.firstName, searchResult.lastName);
   return (
   <div className="card">
     <img 
@@ -39,6 +40,7 @@ const Card: React.FC<Props> = ({ id, searchResult }: Props) : JSX.Element => {
       </div>
     </div>
 
+    <AddPlayer onPlayerCreate={onPlayerCreate} heroImage={searchResult.heroImage} />
     {/* Player ID Badge */}
     <p className="info">ID: {searchResult.playerId}</p>
   </div>

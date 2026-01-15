@@ -5,16 +5,18 @@ import { v4 as uuidv4 } from 'uuid';
 
 interface Props {
   searchResult: PlayerSearch[];
+  onPlayerCreate: (e: React.SyntheticEvent) => void;
 }
 
-const CardList: React.FC<Props> = ({ searchResult }: Props) : JSX.Element => {
+const CardList: React.FC<Props> = ({ searchResult, onPlayerCreate }: Props) : JSX.Element => {
   return <>
   {searchResult.length > 0 ? (
     searchResult.map((result) => {
       return <Card 
           id={result.playerId.toString()} 
           key={uuidv4()}
-          searchResult={result} />
+          searchResult={result}
+          onPlayerCreate={onPlayerCreate} />
     })
   ) : (
     <h1>No results</h1>

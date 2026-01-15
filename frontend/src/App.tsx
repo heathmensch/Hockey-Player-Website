@@ -8,14 +8,9 @@ import { searchPlayers } from './api';
 function App() {
     const [firstName, setFirstName] = useState<string>(""); // Explicit type string
     const [lastName, setLastName] = useState<string>(""); // Explicit type string
-    const [search, setSearch] = useState<string>(""); // Explicit type string
     const [searchResult, setSearchResult] = useState<PlayerSearch[]>([]); // Explicit type any
     const [serverError, setServerError] = useState<string>("");
 
-    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setSearch(e.target.value);
-        console.log(e);
-    };
 
     const handleFirstNameChange = (e: ChangeEvent<HTMLInputElement>) => {
         setFirstName(e.target.value);
@@ -25,7 +20,13 @@ function App() {
         setLastName(e.target.value);
     };
 
-    const onClick = async (e: SyntheticEvent) => {
+    const onPlayerCreate = (e: SyntheticEvent) => {
+      e.preventDefault();
+      console.log(e);
+    };
+
+    const onSearchSubmit = async (e: SyntheticEvent) => {
+      e.preventDefault();
       setServerError(""); // Clear previous errors
 
       // Input validation for first and last name
@@ -46,15 +47,13 @@ function App() {
     
   return (
     <div className="App">
-      <Search onClick={onClick} 
+      <Search onSearchSubmit={onSearchSubmit} 
               firstName={firstName} 
               lastName={lastName} 
-              search={search} 
-              handleChange={handleChange} 
               handleFirstNameChange={handleFirstNameChange} 
               handleLastNameChange={handleLastNameChange} />
               
-      <CardList searchResult={searchResult} />
+      <CardList searchResult={searchResult} onPlayerCreate={onPlayerCreate} />
       {serverError && <h1>{serverError}</h1>}
     </div>
   );
