@@ -19,8 +19,60 @@ const CardList: React.FC<Props> = ({ searchResult, onPlayerCreate }: Props) : JS
           onPlayerCreate={onPlayerCreate} />
     })
   ) : (
-    <h1>No results</h1>
+        <p className="mb-3 mt-3 text-xl font-semibold text-center md:text-xl">
+              No results!
+        </p>
   )} </>
 }
+
+// const CardList: React.FC<Props> = ({ searchResult, onPlayerCreate }): JSX.Element => {
+//   if (searchResult.length === 0) {
+//     return (
+//       <p className="my-3 text-xl font-semibold text-center">
+//         No results!
+//       </p>
+//     );
+//   }
+
+//   return (
+//     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+//       {searchResult.map((result) => (
+//         <Card
+//           key={result.playerId}                 // ✅ stable key
+//           id={result.playerId.toString()}
+//           searchResult={result}
+//           onPlayerCreate={onPlayerCreate}
+//         />
+//       ))}
+//     </div>
+//   );
+// };
+
+// const CardList: React.FC<Props> = ({ searchResult, onPlayerCreate }): JSX.Element => {
+//   if (!searchResult || searchResult.length === 0) {
+//     return (
+//       <p className="my-3 text-xl font-semibold text-center">
+//         No results!
+//       </p>
+//     );
+//   }
+
+//   return (
+//     <div className="max-w-6xl mx-auto px-4">
+//       {/* 1 column on mobile, 2 columns on md+ (half-page each) */}
+//       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+//         {searchResult.map((result) => (
+//           <Card
+//             key={result.playerId}                 // ✅ stable key
+//             id={result.playerId.toString()}
+//             searchResult={result}
+//             onPlayerCreate={onPlayerCreate}
+//           />
+//         ))}
+//       </div>
+//     </div>
+//   );
+// };
+
 
 export default CardList
